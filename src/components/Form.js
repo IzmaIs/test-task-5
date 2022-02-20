@@ -33,7 +33,7 @@ export default function Form () {
     const [isInValid, setValid] = useState(fields);
 
     const y = new Date().getFullYear();
-    const d = new Date().getDate();
+    const d = new Date().getDate();// eslint-disable-next-line
     const today = `${d}`+'.'+month()+'.'+`${y}`;
     const splitToDay = today.split(".")
     const splitBirthDay = birthDay.split(".")
