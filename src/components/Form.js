@@ -49,26 +49,19 @@ export default function Form () {
         const isInValidSelector = !selector;
         if (isInValidFullName) {//проврека имени
             setValid({...isInValid, isInValidFullName: true})
-            alert("oshibka imeni")
         } else if (isInValidBirthDay){//проверка др
             setValid({...isInValid, isInValidBirthDay: true})
-            alert("DR NE ZAPOLNENO")
         } else if (isInValidPhoneNumber) {//проверка телефона
             setValid({...isInValid, isInValidPhoneNumber: true})
-            alert("oshibka nomer")
         } else if (isInValidGender) {//проверка пола
             setValid({...isInValid, isInValidGender: true})
-            alert("ne wibran gender")
         } else if (isInValidMultiSelector) {//проверка пациента
             setValid({...isInValid, isInValidMultiSelector: true})
-            alert("ne kto to")
         } else if (isInValidSelector) {//проврка врача
             setValid({...isInValid, isInValidSelector: true})
-            alert("ne wibran kto to")
         } else { //отправка
-            alert("otprvka")
+            alert("Форма отправлена успешно")
         }
-        console.log(fullName, birthDay , phoneNumber,multiSelector, selector);
     }
     const resetFieldValidation = (setState, newState, field) => {
         setValid({...isInValid, [field]: false })
