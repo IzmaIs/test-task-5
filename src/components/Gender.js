@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Gender (props) {
     return (
-        <>
+        <div>
             <input type="radio"
                    name="gender"
                    value={"male"}
@@ -17,6 +17,6 @@ export default function Gender (props) {
                    className={`${props.error ? "input-error" : ""}`}
             /> <label htmlFor="gender">Женщина</label>
             <span className="input-error-msg">{props.error ? "Ошибка при заполнении поля" : " "}</span>
-        </>
+        </div>
     )
 }

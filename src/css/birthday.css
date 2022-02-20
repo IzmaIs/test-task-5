@@ -24,3 +24,7 @@
     transition: all 100ms;
     box-sizing: border-box;
 }
+
+.react-dadata__container {
+    width: 100%;
+}
