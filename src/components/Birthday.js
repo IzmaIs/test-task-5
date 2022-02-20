@@ -1,13 +1,24 @@
 import '../css/birthday.css';
+import NumberFormat from "react-number-format";
+import React from "react";
 
-export default function Birthday() {
+export default function Birthday(props) {
     return (
         <>
             <div className="birthday">
                 <label htmlFor="birthday">Дата рождения: </label>
-
             </div>
-            <input id="birthday" type="date" min="1900-01-01" max="2022-02-18"/>
+            <NumberFormat
+                className={`birthday-input ${props.error ? "input-error" : ""}`}
+                format="##.##.####"
+                placeholder="ДД.ММ.ГГГГ"
+                mask={['Д', 'Д', 'М', 'М', 'Г','Г','Г','Г']}
+                onValueChange={(values) => {
+                    const { formattedValue, value } = values;
+                    props.onChange(formattedValue, value);
+                }}
+            />
+            <span className="input-error-msg">{props.error ? "Ошибка при заполнении поля" : " "}</span>
         </>
     )
 }

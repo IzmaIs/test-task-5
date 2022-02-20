@@ -5,16 +5,18 @@ import 'react-dadata/dist/react-dadata.css';
 export default function Fio (props) {
     const token = "554a1ccc6c63554d7da56fe0b549733c18a46c14";
 
+    console.log()
     return (
         <>
             <span id="FIO">ФИО</span>
             <FioSuggestions
+
                 token={token}
                 value={props.value}
                 onChange={props.onChange}
                 inputProps={{className: `react-dadata__input ${props.error ? "input-error" : ""}`}}
             />
-            <span className="input-error-msg">{props.error ? "Заполните поле ФИО" : " "}</span>
+            <span className="input-error-msg">{props.error ? "Ошибка при заполнении поля" : " "}</span>
         </>
     )
 }

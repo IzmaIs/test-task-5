@@ -9,7 +9,7 @@ const clientGroup = [
     {value: 'ДМС', label: 'ДМС'}
 ]
 
-export default function MultiSelector() {
+export default function MultiSelector(props) {
 
     return (
         <>
@@ -18,7 +18,11 @@ export default function MultiSelector() {
                 closeMenuOnSelect={true}
                 isMulti
                 options={clientGroup}
+                value={props.value}
+                onChange={props.onChange}
+                className={`${props.error ? "input-error" : ""}`}
             />
+            <span className="input-error-msg">{props.error ? "Выберите хотя бы одного клиента" : " "}</span>
         </>
     )
 }

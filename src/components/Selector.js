@@ -8,7 +8,7 @@ const doctors = [
     {value: 'Черниговская', label: 'Черниговская'}
 ]
 
-export default function Selector() {
+export default function Selector(props) {
 
     return (
         <>
@@ -16,7 +16,11 @@ export default function Selector() {
             <Select
                 closeMenuOnSelect={true}
                 options={doctors}
+                defaultValue={props.value}
+                onChange={props.onChange}
+                className={`${props.error ? "input-error" : ""}`}
             />
+            <span className="input-error-msg">{props.error ? "Выберите врача" : " "}</span>
         </>
     )
 }

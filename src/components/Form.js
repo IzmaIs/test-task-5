@@ -4,54 +4,104 @@ import Phone from "./Phone";
 import MultiSelector from "./MultiSelector";
 import Selector from "./Selector";
 import Fio from "./Fio";
+import Gender from "./Gender";
 
-const filds = {
+const fields = {
     isInValidFullName: false,
+    isInValidBirthDay: false,
     isInValidPhoneNumber: false,
+    isInValidGender: false,
+    isInValidMultiSelector: false,
+    isInValidSelector: false,
 }
 
+const month = () => {
+    let m = new Date().getMonth()+1;
+    if (m < 10) {
+        m = "0" + m;
+    }
+    return m;
+}
 
 export default function Form () {
     const [fullName, setFullName] = useState({});
+    const [birthDay, setBirthDay] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [isInValid, setValid] = useState(filds);
+    const [gender, setGender] = useState("");
+    const [multiSelector, setMultiSelector] = useState();
+    const [selector, setSelector] = useState();
+    const [isInValid, setValid] = useState(fields);
+
+    const y = new Date().getFullYear();
+    const d = new Date().getDate();
+    const today = `${d}`+'.'+month()+'.'+`${y}`;
+    const splitToDay = today.split(".")
+    const splitBirthDay = birthDay.split(".")
+    const regexp = /[0-9Г][0-9Г][0-9Г]Г/;
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const isInValidFullName = !fullName.data || !fullName.data.name || !fullName.data.patronymic || !fullName.data.surname;
+        const isInValidBirthDay = !birthDay || birthDay.match(regexp) || splitBirthDay[2] >= splitToDay[2] || splitBirthDay[2] < 1920 || splitBirthDay[1] > 12 || splitBirthDay[0] > 31;
         const isInValidPhoneNumber = `7${phoneNumber}`.length !== 11;
+        const isInValidGender = !gender;
+        const isInValidMultiSelector = !multiSelector || !multiSelector[0] ;
+        const isInValidSelector = !selector;
         if (isInValidFullName) {//проврека имени
             setValid({...isInValid, isInValidFullName: true})
             alert("oshibka imeni")
-        } else if (isInValidPhoneNumber) {
+        } else if (isInValidBirthDay){//проверка др
+            setValid({...isInValid, isInValidBirthDay: true})
+            alert("DR NE ZAPOLNENO")
+        } else if (isInValidPhoneNumber) {//проверка телефона
+            setValid({...isInValid, isInValidPhoneNumber: true})
             alert("oshibka nomer")
-        } else {
-            alert("otprvka ")
+        } else if (isInValidGender) {//проверка пола
+            setValid({...isInValid, isInValidGender: true})
+            alert("ne wibran gender")
+        } else if (isInValidMultiSelector) {//проверка пациента
+            setValid({...isInValid, isInValidMultiSelector: true})
+            alert("ne kto to")
+        } else if (isInValidSelector) {//проврка врача
+            setValid({...isInValid, isInValidSelector: true})
+            alert("ne wibran kto to")
+        } else { //отправка
+            alert("otprvka")
         }
-        console.log(phoneNumber);
+        console.log(fullName, birthDay , phoneNumber,multiSelector, selector);
     }
-    const resetFildValidation = (setState, newState, field) => {
+    const resetFieldValidation = (setState, newState, field) => {
         setValid({...isInValid, [field]: false })
         setState(newState)
     }
         return(
             <form id="formAdv">
-                <Fio value={fullName} onChange={(e) => resetFildValidation(setFullName, e, 'isInValidFullName')} error={isInValid.isInValidFullName}/>
-                <Birthday/>
-                <Phone value={phoneNumber} onChange={setPhoneNumber}/>
+                <Fio
+                    value={fullName}
+                    onChange={(e) => resetFieldValidation(setFullName, e, 'isInValidFullName')} error={isInValid.isInValidFullName}
+                />
+                <Birthday
+                    value={birthDay}
+                    onChange={(e) => resetFieldValidation(setBirthDay, e, 'isInValidBirthDay')} error={isInValid.isInValidBirthDay}
+                />
+                <Phone
+                    value={phoneNumber}
+                    onChange={(e) => resetFieldValidation(setPhoneNumber, e, 'isInValidPhoneNumber')} error={isInValid.isInValidPhoneNumber}
+                />
+                <Gender
+                    value={gender}
+                    onChange={(e) => resetFieldValidation(setGender, e, 'isInValidGender')} error={isInValid.isInValidGender}
+                />
+                <MultiSelector
+                    value={multiSelector}
+                    onChange={(e) => resetFieldValidation(setMultiSelector, e, 'isInValidMultiSelector')} error={isInValid.isInValidMultiSelector}
+                />
+                <Selector
+                    value={selector}
+                    onChange={(e) => resetFieldValidation(setSelector, e, 'isInValidSelector')} error={isInValid.isInValidSelector}
+                />
                 <label>
-                    <input type="radio"
-                           name="gender"
-                           value="MALE"
-                           /> Мужчина
-                    <input type="radio"
-                           name="gender"
-                           value="FEMALE"
-                           /> Женщина
-                </label>
-                <MultiSelector/>
-                <Selector/>
-                <label>
-                    <input type="checkbox" /> Не отправлять СМС.
+                    <input type="checkbox" value="yes"/> Не отправлять СМС.
                 </label>
                 <input type="submit" onClick={handleSubmit}/>
             </form>

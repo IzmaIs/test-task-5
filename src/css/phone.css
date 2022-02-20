@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.PhoneInput {
+.phone-input {
     width: 100%;
     padding: 2px 8px;
     -webkit-align-items: center;
@@ -23,7 +23,6 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
