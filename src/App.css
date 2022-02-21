@@ -62,6 +62,7 @@ input:focus {
     height: 33px;
     border-radius: 10px;
     cursor: pointer;
+    background: #d1d1d1;
 }
 
 #button-form:hover {
