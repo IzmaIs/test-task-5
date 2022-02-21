@@ -10,7 +10,6 @@ export default function Fio (props) {
         <>
             <span id="FIO">ФИО</span>
             <FioSuggestions
-
                 token={token}
                 value={props.value}
                 onChange={props.onChange}

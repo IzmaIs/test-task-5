@@ -37,12 +37,11 @@ export default function Form () {
     const today = `${d}`+'.'+month()+'.'+`${y}`;
     const splitToDay = today.split(".")
     const splitBirthDay = birthDay.split(".")
-    const regexp = /[0-9Г][0-9Г][0-9Г]Г/;
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const isInValidFullName = !fullName.data || !fullName.data.name || !fullName.data.patronymic || !fullName.data.surname;
-        const isInValidBirthDay = !birthDay || birthDay.match(regexp) || splitBirthDay[2] >= splitToDay[2] || splitBirthDay[2] < 1920 || splitBirthDay[1] > 12 || splitBirthDay[0] > 31;
+        const isInValidBirthDay = !birthDay || splitBirthDay[2] > splitToDay[2] || splitBirthDay[2] < 1920 || splitBirthDay[1] > 12 || splitBirthDay[0] > 31;
         const isInValidPhoneNumber = `7${phoneNumber}`.length !== 11;
         const isInValidGender = !gender;
         const isInValidMultiSelector = !multiSelector || !multiSelector[0] ;
@@ -93,10 +92,12 @@ export default function Form () {
                     value={selector}
                     onChange={(e) => resetFieldValidation(setSelector, e, 'isInValidSelector')} error={isInValid.isInValidSelector}
                 />
-                <label>
+                <label id="sms-check">
                     <input type="checkbox" value="yes"/> Не отправлять СМС.
                 </label>
-                <input type="submit" onClick={handleSubmit}/>
+                <button id="button-form" type="submit" onClick={handleSubmit}>
+                    Отправить
+                </button>
             </form>
         )
     }

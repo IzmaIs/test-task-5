@@ -44,3 +44,31 @@ input:focus {
     height: 20px;
     font-size: 14px;
 }
+
+#sms-check {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+#sms-check input{
+    cursor: pointer;
+}
+
+#button-form {
+    border: 0;
+    width: 110px;
+    height: 33px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#button-form:hover {
+    background: #bfbfbf;
+}
+
+#button-form:active {
+    width: 105px;
+    height: 32px;
+}
