@@ -22,7 +22,7 @@ export default function MultiSelector(props) {
                 onChange={props.onChange}
                 className={`${props.error ? "input-error" : ""}`}
             />
-            <span className="input-error-msg">{props.error ? "Выберите хотя бы одного клиента" : " "}</span>
+            <span className="input-error-msg">{props.error ? "Выберите хотя бы одну группу клиентов" : " "}</span>
         </>
     )
 }

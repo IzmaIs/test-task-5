@@ -20,7 +20,7 @@ export default function Gender (props) {
             />
                 <label htmlFor="gender">Женщина</label>
             </div>
-            <span className="input-error-msg">{props.error ? "Ошибка при заполнении поля" : " "}</span>
+            <span className="input-error-msg">{props.error ? "Выберите пол" : " "}</span>
             </>
     )
 }

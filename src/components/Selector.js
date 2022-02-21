@@ -20,7 +20,7 @@ export default function Selector(props) {
                 onChange={props.onChange}
                 className={`${props.error ? "input-error" : ""}`}
             />
-            <span className="input-error-msg">{props.error ? "Выберите врача" : " "}</span>
+            <span className="input-error-msg">{props.error ? "Выберите доктора" : " "}</span>
         </>
     )
 }
